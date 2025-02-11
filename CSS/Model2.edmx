@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Birth Certificate">
+          <Key>
+            <PropertyRef Name="ID_Born" />
+          </Key>
+          <Property Name="ID_Born" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Number_Born" Type="varchar(max)" Nullable="false" />
+          <Property Name="Born_name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Father_name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Mother_name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Grand_last_name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Gendar_Born" Type="varchar(max)" />
+          <Property Name="Nationality" Type="varchar(max)" Nullable="false" />
+          <Property Name="Religion_Father" Type="varchar(max)" Nullable="false" />
+          <Property Name="Occupation_Father" Type="varchar(max)" Nullable="false" />
+          <Property Name="Nationality_Father" Type="varchar(max)" Nullable="false" />
+          <Property Name="Address" Type="varchar(max)" Nullable="false" />
+          <Property Name="Birth_date" Type="date" Nullable="false" />
+          <Property Name="Release_date" Type="date" Nullable="false" />
+          <Property Name="Birth_place" Type="varchar(max)" Nullable="false" />
+          <Property Name="Religion_Mother" Type="varchar(max)" Nullable="false" />
+          <Property Name="Occupation_Mother" Type="varchar(max)" Nullable="false" />
+          <Property Name="Nationality_Mother" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Identification Card">
+          <Key>
+            <PropertyRef Name="ID_Card" />
+          </Key>
+          <Property Name="ID_Card" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Number" Type="varchar(max)" Nullable="false" />
+          <Property Name="Quadruple_Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Blood_Type" Type="varchar(max)" Nullable="false" />
+          <Property Name="Personal_Picture" Type="image" Nullable="false" />
+          <Property Name="Release_Date" Type="date" Nullable="false" />
+          <Property Name="ID_Born" Type="int" Nullable="false" />
+          <Property Name="End_Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="job" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Passport_Number" Type="varchar(max)" Nullable="false" />
+          <Property Name="The_Third_Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Nickname" Type="varchar(max)" Nullable="false" />
+          <Property Name="Occupation" Type="varchar(max)" Nullable="false" />
+          <Property Name="Release_date" Type="date" Nullable="false" />
+          <Property Name="Personal_Picture" Type="image" Nullable="false" />
+          <Property Name="ID_Born" Type="int" Nullable="false" />
+          <Property Name="End_Date" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Identification Card_Birth Certificate">
+          <End Role="Birth Certificate" Type="Self.Birth Certificate" Multiplicity="1" />
+          <End Role="Identification Card" Type="Self.Identification Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birth Certificate">
+              <PropertyRef Name="ID_Born" />
+            </Principal>
+            <Dependent Role="Identification Card">
+              <PropertyRef Name="ID_Born" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passport_Birth Certificate">
+          <End Role="Birth Certificate" Type="Self.Birth Certificate" Multiplicity="1" />
+          <End Role="Passport" Type="Self.Passport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birth Certificate">
+              <PropertyRef Name="ID_Born" />
+            </Principal>
+            <Dependent Role="Passport">
+              <PropertyRef Name="ID_Born" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Birth Certificate" EntityType="Self.Birth Certificate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Identification Card" EntityType="Self.Identification Card" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passport" EntityType="Self.Passport" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Identification Card_Birth Certificate" Association="Self.FK_Identification Card_Birth Certificate">
+            <End Role="Birth Certificate" EntitySet="Birth Certificate" />
+            <End Role="Identification Card" EntitySet="Identification Card" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passport_Birth Certificate" Association="Self.FK_Passport_Birth Certificate">
+            <End Role="Birth Certificate" EntitySet="Birth Certificate" />
+            <End Role="Passport" EntitySet="Passport" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Birth_Certificate">
+          <Key>
+            <PropertyRef Name="ID_Born" />
+          </Key>
+          <Property Name="ID_Born" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Number_Born" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Born_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Father_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mother_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Grand_last_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gendar_Born" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Nationality" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Religion_Father" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Occupation_Father" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nationality_Father" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Birth_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Release_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Birth_place" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Religion_Mother" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Occupation_Mother" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nationality_Mother" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Identification_Card" Relationship="Self.FK_Identification_Card_Birth_Certificate" FromRole="Birth_Certificate" ToRole="Identification_Card" />
+          <NavigationProperty Name="Passports" Relationship="Self.FK_Passport_Birth_Certificate" FromRole="Birth_Certificate" ToRole="Passport" />
+        </EntityType>
+        <EntityType Name="Identification_Card">
+          <Key>
+            <PropertyRef Name="ID_Card" />
+          </Key>
+          <Property Name="ID_Card" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quadruple_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Blood_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Personal_Picture" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Release_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_Born" Type="Int32" Nullable="false" />
+          <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Birth_Certificate" Relationship="Self.FK_Identification_Card_Birth_Certificate" FromRole="Identification_Card" ToRole="Birth_Certificate" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="job" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Passport_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="The_Third_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nickname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Occupation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Release_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Personal_Picture" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ID_Born" Type="Int32" Nullable="false" />
+          <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Birth_Certificate" Relationship="Self.FK_Passport_Birth_Certificate" FromRole="Passport" ToRole="Birth_Certificate" />
+        </EntityType>
+        <Association Name="FK_Identification_Card_Birth_Certificate">
+          <End Role="Birth_Certificate" Type="Self.Birth_Certificate" Multiplicity="1" />
+          <End Role="Identification_Card" Type="Self.Identification_Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birth_Certificate">
+              <PropertyRef Name="ID_Born" />
+            </Principal>
+            <Dependent Role="Identification_Card">
+              <PropertyRef Name="ID_Born" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passport_Birth_Certificate">
+          <End Role="Birth_Certificate" Type="Self.Birth_Certificate" Multiplicity="1" />
+          <End Role="Passport" Type="Self.Passport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birth_Certificate">
+              <PropertyRef Name="ID_Born" />
+            </Principal>
+            <Dependent Role="Passport">
+              <PropertyRef Name="ID_Born" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Civil_statusEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Birth_Certificates" EntityType="Self.Birth_Certificate" />
+          <EntitySet Name="Identification_Cards" EntityType="Self.Identification_Card" />
+          <EntitySet Name="Logins" EntityType="Self.Login" />
+          <EntitySet Name="Passports" EntityType="Self.Passport" />
+          <AssociationSet Name="FK_Identification_Card_Birth_Certificate" Association="Self.FK_Identification_Card_Birth_Certificate">
+            <End Role="Birth_Certificate" EntitySet="Birth_Certificates" />
+            <End Role="Identification_Card" EntitySet="Identification_Cards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passport_Birth_Certificate" Association="Self.FK_Passport_Birth_Certificate">
+            <End Role="Birth_Certificate" EntitySet="Birth_Certificates" />
+            <End Role="Passport" EntitySet="Passports" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Civil_statusEntities1">
+          <EntitySetMapping Name="Birth_Certificates">
+            <EntityTypeMapping TypeName="Model.Birth_Certificate">
+              <MappingFragment StoreEntitySet="Birth Certificate">
+                <ScalarProperty Name="ID_Born" ColumnName="ID_Born" />
+                <ScalarProperty Name="ID_Number_Born" ColumnName="ID_Number_Born" />
+                <ScalarProperty Name="Born_name" ColumnName="Born_name" />
+                <ScalarProperty Name="Father_name" ColumnName="Father_name" />
+                <ScalarProperty Name="Mother_name" ColumnName="Mother_name" />
+                <ScalarProperty Name="Grand_last_name" ColumnName="Grand_last_name" />
+                <ScalarProperty Name="Gendar_Born" ColumnName="Gendar_Born" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Religion_Father" ColumnName="Religion_Father" />
+                <ScalarProperty Name="Occupation_Father" ColumnName="Occupation_Father" />
+                <ScalarProperty Name="Nationality_Father" ColumnName="Nationality_Father" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Birth_date" ColumnName="Birth_date" />
+                <ScalarProperty Name="Release_date" ColumnName="Release_date" />
+                <ScalarProperty Name="Birth_place" ColumnName="Birth_place" />
+                <ScalarProperty Name="Religion_Mother" ColumnName="Religion_Mother" />
+                <ScalarProperty Name="Occupation_Mother" ColumnName="Occupation_Mother" />
+                <ScalarProperty Name="Nationality_Mother" ColumnName="Nationality_Mother" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Identification_Cards">
+            <EntityTypeMapping TypeName="Model.Identification_Card">
+              <MappingFragment StoreEntitySet="Identification Card">
+                <ScalarProperty Name="ID_Card" ColumnName="ID_Card" />
+                <ScalarProperty Name="ID_Number" ColumnName="ID_Number" />
+                <ScalarProperty Name="Quadruple_Name" ColumnName="Quadruple_Name" />
+                <ScalarProperty Name="Blood_Type" ColumnName="Blood_Type" />
+                <ScalarProperty Name="Personal_Picture" ColumnName="Personal_Picture" />
+                <ScalarProperty Name="Release_Date" ColumnName="Release_Date" />
+                <ScalarProperty Name="ID_Born" ColumnName="ID_Born" />
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="Model.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="job" ColumnName="job" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passports">
+            <EntityTypeMapping TypeName="Model.Passport">
+              <MappingFragment StoreEntitySet="Passport">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Passport_Number" ColumnName="ID_Passport_Number" />
+                <ScalarProperty Name="The_Third_Name" ColumnName="The_Third_Name" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="Release_date" ColumnName="Release_date" />
+                <ScalarProperty Name="Personal_Picture" ColumnName="Personal_Picture" />
+                <ScalarProperty Name="ID_Born" ColumnName="ID_Born" />
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
